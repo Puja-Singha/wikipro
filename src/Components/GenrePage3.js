@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import fetchApiData from '../Controller/data';
 
 
 const GenrePage3 = () => {
@@ -11,51 +12,26 @@ const GenrePage3 = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const genreResponse = await axios.get('https://api.themoviedb.org/3/genre/tv/list', {
-           
-            headers: {
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const genreResponse = await fetchApiData("/genre/tv/list")
   
           console.log('Genre Response:', genreResponse.data);
   
           const selectedGenre = genreResponse.data.genres.find((genre) => genre.name === genreId);
           const genreIdFilter = selectedGenre ? selectedGenre.id : null;
   
-          const trendingTVResponse = await axios.get('https://api.themoviedb.org/3/tv/airing_today', {
-            
-            headers: {
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const trendingTVResponse = await fetchApiData("/tv/airing_today")
   
           console.log('TrendingTV Response:', trendingTVResponse.data);
   
-          const topTVResponse = await axios.get('https://api.themoviedb.org/3/tv/top_rated', {
-           
-            headers: {
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
-  
+          const topTVResponse = await fetchApiData("/tv/top_rated")
+
           console.log('Top TV Response:', topTVResponse.data);
   
-          const nowplayingTVResponse = await axios.get('https://api.themoviedb.org/3/tv/on_the_air', {
-            
-            headers: {
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const nowplayingTVResponse = await fetchApiData("/tv/on_the_air")
   
           console.log('Now-Playing TV Response:', nowplayingTVResponse.data);
   
-          const popularTvResponse = await axios.get('https://api.themoviedb.org/3/tv/popular', {
-            
-            headers: {
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const popularTvResponse = await fetchApiData("/tv/popular")
   
           console.log('Popular Tv Response:', popularTvResponse.data);
   

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import fetchApiData from '../Controller/data';
 
 
 export const Nowplaying = () => {
@@ -10,14 +11,7 @@ export const Nowplaying = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing`, {
-            params: {
-              language: 'en-US',
-            },
-            headers: {
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const response = await fetchApiData("/movie/now_playing")
   
           const item = response.data.results.find(item => item.id.toString() === id);
   

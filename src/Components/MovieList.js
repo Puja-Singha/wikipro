@@ -48,7 +48,7 @@ const MovieList = () => {
           <Link to='/genre/Music' className='text-black md:text-lg text-sm hover:bg-pink-500 md:rounded-full border rounded-2xl border-pink-600 p-1 flex flex-col mx-1 mt-2 md:mr-2'>Music</Link>
           <Link to='/genre/Western' className='text-black md:text-lg text-sm md:rounded-full border rounded-2xl border-pink-600 p-1 flex flex-col mx-1 mt-2 md:mr-2'>Western</Link>
           <Link to='/genre/War' className='text-black md:text-lg text-sm hover:bg-pink-500 md:rounded-full border rounded-2xl border-pink-600 p-1 flex flex-col mx-1 mt-2 md:mr-2'>War</Link>
-          <Link to='/genre2/TV Movie' className='text-black md:text-lg text-sm hover:bg-pink-500 md:rounded-full border rounded-2xl border-pink-600 p-1 flex flex-col mx-1 mt-2 md:mr-2'>TV Movie</Link>
+          
           
         </div>
       </div>

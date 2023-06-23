@@ -16,9 +16,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // const handleOptionSelect = (option) => {
-  //   setSelectedOption(option);
-  // };
+
 
   const handleSearch = (e) => {
     const searchTerm = e.target.value;

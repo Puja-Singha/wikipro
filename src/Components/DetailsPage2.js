@@ -15,7 +15,7 @@
                 language: 'en-US',
              },
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
+                    'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 }
             });
     
@@ -61,7 +61,7 @@
           />
           <h1 className='text-white md:text-lg md:pt-10 pt-4 text-2xl font-serif items-center'>{data.title}</h1>
           <p className='text-yellow-400'>Release Date: {data.releaseDate}</p>
-          <p className='text-pink-600 flex flex-col md:ml-96 md:mr-96 md:pb-40 text-xl md:pt-8 pt-6 pb-28 ml-10 mr-8'>{data.overview}</p>
+          <p className='text-pink-600 flex flex-col md:ml-96 md:mr-96 md:pb-40 text-xl md:pt-8 pt-6 pb-56 ml-10 mr-8'>{data.overview}</p>
         </div>
       );
     };

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, useNavigate} from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import fetchApiData  from "../Controller/data"
+
 
 export const AllmoviesandTvshows = () => {
   const [data, setData] = useState([]);
@@ -19,22 +21,22 @@ export const AllmoviesandTvshows = () => {
   fetchData();
   fetchPopularTvShows();
   fetchPopularMovies();
-  fetchTrending()
+  fetchTrending();
+  // fetchTrend()
   }, [])
+
+  // const fetchTrend = async() => {
+  //   const trendingData = await fetchApiData("/trending/all/day");
+  //   console.log(trendingData);
+  // }
+
+
+  
 
    const fetchData = async () => {
     try{
-      const response = await axios.get('https://api.themoviedb.org/3/trending/all/day', {
-        params: {
-          language: 'en-US',
-          page: 1
-        },
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-        }
-      });
-    
-      
+      const response = await fetchApiData("/trending/all/day")
+
       const data = response.data.results
           .filter((item) => item.poster_path !== null && item.poster_path !== undefined)
           .map((item) => ({
@@ -53,15 +55,7 @@ export const AllmoviesandTvshows = () => {
 
     const fetchPopularTvShows = async () => {
       try {
-        const response = await axios.get('https://api.themoviedb.org/3/tv/top_rated', {
-          params: {
-            language: 'en-US',
-            page: 1
-          },
-          headers: {
-            'Authorization':  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-          }
-        });
+        const response = await fetchApiData("/tv/top_rated")
     
         const data = response.data.results
           .filter((item) => item.poster_path !== null && item.poster_path !== undefined)
@@ -82,15 +76,7 @@ export const AllmoviesandTvshows = () => {
     
     const fetchPopularMovies = async () => {
       try {
-        const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
-          params: {
-            language: 'en-US',
-            page: 1
-          },
-          headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-          }
-        });
+        const response = await fetchApiData("/movie/top_rated")
       
         
         const data2 = response.data.results
@@ -111,15 +97,7 @@ export const AllmoviesandTvshows = () => {
 
    const fetchTrending = async () => {
     try {
-      const response = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
-        params: {
-          language: 'en-US',
-          page: 1
-        },
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-        }
-      });
+      const response = await fetchApiData("/movie/now_playing")
     
       
       const data3 = response.data.results

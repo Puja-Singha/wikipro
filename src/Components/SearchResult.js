@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
 
 export const SearchResult = () => {
   const location = useLocation();
@@ -15,16 +15,16 @@ export const SearchResult = () => {
       const apiEndpoints = {
         all: {
           url: 'https://api.themoviedb.org/3/trending/all/day?language=en-US',
-          bearerToken: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8',
+          bearerToken: `Bearer ${process.env.REACT_APP_API_KEY}`,
         },
 
         movie: {
           url: 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
-          bearerToken: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8',
+          bearerToken:  `Bearer ${process.env.REACT_APP_API_KEY}`,
         },
         tv: {
           url: 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1',
-          bearerToken: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8',
+          bearerToken:  `Bearer ${process.env.REACT_APP_API_KEY}`,
         },
         
         
@@ -77,9 +77,9 @@ export const SearchResult = () => {
             <div>
              <h2 className="text-yellow-300 text-lg md:mx-64 mx-4 font-bold mt-6 md:w-fit md:h-fit w-1/3 ">{result.title}{result.name}</h2>
               <p className="text-gray-500 md:mx-64 mx-4">{result.release_date}{result.first_air_date}</p>
-              <div className='flex mt-2'>
+              {/* <div className='flex mt-2'>
               <FaStar className='text-yellow-300 mr-1 mt-1 md:mx-64 mx-4'/>   
-              <p className="text-yellow-300 mr-72 mx-0">{result.vote_average}</p></div>
+              <p className="text-yellow-300 mr-72 mx-0">{result.vote_average}</p></div> */}
               <p className="text-pink-500 md:text-lg text-xl md:mr-72 mt-4 md:w-fit w-80 mr-10 md:mx-64 mx-4">{result.overview}</p> 
                 </div>
             </div>

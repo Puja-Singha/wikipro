@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { Link } from 'react-router-dom';
+import fetchApiData from '../Controller/data';
 
 
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [carouselData, setCarouselData] = useState([]);
   const [activeItem, setActiveItem] = useState(0);
   const [gridData, setGridData] = useState([]);
@@ -18,11 +19,11 @@ const Home = () => {
   const [newGridData, setNewGridData] = useState([]);
   const [gridCurrentPage, setGridCurrentPage] = useState(1);
   const itemsPerGrid = 6;
-  const totalGridPages = Math.ceil(newGridData.length/ itemsPerGrid);
+  // const totalGridPages = Math.ceil(newGridData.length/ itemsPerGrid);
   const [gridsData, setGridsData] = useState([]);
   const [gridsCurrentPage, setGridsCurrentPage] = useState(1);
   const itemsPerGrids = 6;
-  const totalGridsPages = Math.ceil(gridsData.length/ itemsPerGrids)
+  // const totalGridsPages = Math.ceil(gridsData.length/ itemsPerGrids)
   
   useEffect(() => {
     fetchData();
@@ -38,7 +39,7 @@ const Home = () => {
       maxBodyLength: Infinity,
       url: 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1',
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
       }
     };
     const totalPages = 50;
@@ -69,15 +70,7 @@ const Home = () => {
 
   const fetchGridData = async () => {
     try {
-      const response = await axios.get('https://api.themoviedb.org/3/trending/all/day', {
-        params: {
-          language: 'en-US',
-          page: 1
-        },
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-        }
-      });
+      const response = await fetchApiData("/trending/all/day")
     
       
       const data = response.data.results
@@ -98,15 +91,7 @@ const Home = () => {
    
     const fetchNewGridData = async () => {
       try {
-        const response = await axios.get('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', {
-          params: {
-            language: 'en-US',
-            page: 1
-          },
-          headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-          }
-        });
+        const response = await fetchApiData("/tv/top_rated")
       
         
         const data = response.data.results
@@ -128,15 +113,7 @@ const Home = () => {
      
      const fetchGridsData = async () => {
       try {
-      const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
-        params: {
-          language: 'en-US',
-          page: 1
-        },
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-        }
-      });
+      const response = await fetchApiData("/movie/top_rated")
     
       
       const data = response.data.results
@@ -182,9 +159,7 @@ const Home = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const openMoviePage = (id) => {
-    navigate(`/movies/${id}`);
-  };
+  
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -274,7 +249,6 @@ const Home = () => {
                     index === activeItem ? 'carousel-item' : 'carousel-item hidden'
                   }`}
                   data-carousel-item={index === activeItem ? 'active' : ''}
-                  onClick={() => openMoviePage(item.id)}
                 >
                   <div className="absolute inset-0 flex items-center justify-center">
                     <img
@@ -310,7 +284,7 @@ const Home = () => {
                 <div
                   key={index}
                   className="card border md:p-1 border-bg-gray-900  md:mx-5  md:h-full md:w-full flex  flex-col items-center w-full  h-full font-sans text-sm  overflow-hidden  p-1 my-2 md:my-3"
-                  onClick={() => openMoviePage(item.id)}
+
                 >
                   <img src={item.backdrop} alt="Movie Poster" className="w-full h-full  object-cover" loading="lazy"/>
                   
@@ -330,7 +304,7 @@ const Home = () => {
             <div
               key={item.id}
               className="flex flex-col justify-between p-2 border border-gray-200 rounded-md overflow-hidden"
-              onClick={() => openMoviePage(item.id)}
+             
             >
               <img src={item.poster} alt={item.title} className="h-full w-full object-cover" loading="lazy" />
               <div className="mt-2 text-center">
@@ -378,7 +352,7 @@ const Home = () => {
             <div
               key={item.id}
               className="flex flex-col justify-between p-2 border border-gray-200 rounded-md overflow-hidden"
-              onClick={() => openMoviePage(item.id)}
+              
             >
               <img src={item.poster} alt={item.title} className="h-full w-full object-cover" loading="lazy"/>
               <div className="mt-2 text-center">
@@ -424,7 +398,7 @@ const Home = () => {
             <div
               key={item.id}
               className="flex flex-col justify-between p-2 border border-gray-200 rounded-md overflow-hidden"
-              onClick={() => openMoviePage(item.id)}
+            
             >
               <img src={item.poster} alt={item.title} className="h-full w-full object-cover" loading="lazy"/>
               <div className="mt-2 text-center">

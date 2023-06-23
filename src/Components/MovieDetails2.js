@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import fetchApiData from '../Controller/data';
 
 export const MovieDetails2 = () => {
     const [data, setData] = useState([]);
@@ -14,15 +15,7 @@ export const MovieDetails2 = () => {
     
     const fetchData = async () => {
         try{
-          const response = await axios.get('https://api.themoviedb.org/3/movie/popular', {
-            params: {
-              language: 'en-US',
-              page: 1
-            },
-            headers: {
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-            }
-          });
+          const response = await fetchApiData("/movie/popular")
         
           
           const data = response.data.results

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import fetchApiData from '../Controller/data';
 
 
 const GenrePage2 = () => {
@@ -11,12 +12,8 @@ const GenrePage2 = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const genreResponse = await axios.get('https://api.themoviedb.org/3/genre/movie/list', {
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-                  }
-              });
-    
+              const genreResponse = await fetchApiData("/genre/movie/list")
+
               console.log('Genre Response:', genreResponse.data);
               
               const selectedGenre = genreResponse.data.genres.find((genre) => genre.name === genreId);
@@ -24,32 +21,17 @@ const GenrePage2 = () => {
     
             
     
-              const topMoviesResponse = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
-                
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-                  }
-              });
+              const topMoviesResponse = await fetchApiData("/movie/top_rated")
     
               console.log('Top Movie Response:', topMoviesResponse.data);
     
     
-              const  nowplayingMovieResponse = await axios.get('https://api.themoviedb.org/3/movie/now_playing', {
-                
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-                  }
-              });
-    
+              const  nowplayingMovieResponse = await fetchApiData("/movie/now_playing")
+
               console.log('Now-Playing Movie Response:',  nowplayingMovieResponse.data);
               
     
-              const  upcomingMovieResponse = await axios.get('https://api.themoviedb.org/3/movie/upcoming', {
-                
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzMzZWQxY2NlOGMxMDMwNDQ5N2UyNzg4YTYwNDIxYiIsInN1YiI6IjY0NmEzODFiYTUwNDZlMDEwNThiZjZiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xYqyCI7ZTaEawRt_iulQgvOja6jm2i5voF9xqie-GM8'
-                  }
-              });
+              const  upcomingMovieResponse = await fetchApiData("/movie/upcoming")
     
               console.log('Upcoming Movie Response:', upcomingMovieResponse.data);
       
