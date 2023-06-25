@@ -57,13 +57,13 @@ const GenrePage = () => {
   }, [genreId]);
 
   if (!data || data.length === 0) {
-    return <div className='flex flex-col items-center md:ml-4'>Loading...</div>;
+    return <div className='flex flex-col items-center md:ml-4  min-h-screen'>Loading...</div>;
   }
 
      
 
   return (
-    <div className='bg-black  overflow-hidden'>
+    <div className='bg-black  overflow-hidden h-full w-full pb-96'>
       <h1 className="text-white md:text-4xl text-2xl font-serif text-left md:ml-64 ml-4 mt-6 mb-5 hover:text-pink-500 hover:underline cursor-pointer">GENRE - {genreId}</h1>
       <div className="container md:ml-8 mt-4">
         <ul>

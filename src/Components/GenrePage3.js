@@ -57,7 +57,7 @@ const GenrePage3 = () => {
     }, [genreId]);
   
     if (!data || data.length === 0) {
-      return <div className='flex flex-col items-center md:ml-4'>Loading...</div>;
+      return <div className='flex flex-col items-center md:ml-4 min-h-screen'>Loading...</div>;
     }
 
     return (
