@@ -52,7 +52,7 @@ export const DetailsPage = () => {
   const { title, poster, releaseDate, overView } = data;
 
   return (
-    <div className='bg-black flex flex-col justify-between items-center pt-6'>
+    <div className='bg-black flex flex-col justify-between items-center pt-6 min-h-screen'>
       <img src={poster} alt={title} className='flex flex-col border p-2 border-gray-200 rounded-md overflow-hidden md:w-1/6 md:h-full w-1/2 h-full items-start pt-2' loading="lazy" />
       <h1 className='text-white md:text-lg md:pt-10 pt-4 text-2xl font-serif ml-9 mr-3'>{title}</h1>
       <p className='text-yellow-400'>Release Date: {releaseDate}</p>

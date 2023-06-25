@@ -28,6 +28,7 @@ const Navbar = () => {
     if (searchTerm) {
       const encodedSearchTerm = encodeURIComponent(searchTerm);
       navigate(`/search?q=${encodedSearchTerm}`);
+      setSearchTerm('')
     }
   };
 
