@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <nav className="flex bg-gray-950 p-1 md:p-4 text-white items-center">
+      <nav className="flex bg-gray-800 p-1 md:p-4 text-white items-center">
         <div>
           <Link
             to="/"
