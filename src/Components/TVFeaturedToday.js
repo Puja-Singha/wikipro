@@ -44,8 +44,8 @@ export const TVFeaturedToday = () => {
       }
     }, [data]);
   
-    if (!data) {
-      return <div>Loading...</div>;
+    if (!data || data.length === 0) {
+      return <div className='flex flex-col items-center md:ml-4 min-h-screen'>Loading...</div>;
     }
   
     const { title, poster, releaseDate, overView } = data;

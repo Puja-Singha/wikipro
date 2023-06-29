@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import fetchApiData from '../Controller/data';
 
 
@@ -46,8 +45,8 @@ export const Nowplaying = () => {
       }
     }, [data]);
   
-    if (!data) {
-      return <div>Loading...</div>;
+    if (!data || data.length === 0) {
+      return <div className='flex flex-col items-center md:ml-4 min-h-screen'>Loading...</div>;
     }
   
     const { title, poster, releaseDate, overView } = data;
